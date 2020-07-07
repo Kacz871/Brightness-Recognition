@@ -12,7 +12,6 @@ public class FolderConstructor {
         this.output = output;
         File folder = new File(input);
         this.imageList = folder.listFiles();
-        this.folderStructure();
 
     }
 
@@ -40,14 +39,4 @@ public class FolderConstructor {
         this.imageList = imageList;
     }
 
-    public void folderStructure(){
-        File dark = new File(output + "\\dark");
-        if(!dark.exists()) {
-            dark.mkdir();
-        }
-        File bright = new File(output + "\\bright");
-        if(!bright.exists()) {
-            bright.mkdir();
-        }
-    }
 }

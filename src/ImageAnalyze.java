@@ -2,7 +2,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class ImageAnalyze {
     private double brightnessThreshold;
@@ -38,12 +39,24 @@ public class ImageAnalyze {
                     String folder = "";
                     double brightnessLvl = this.brightnessThreshold / 100;
                     System.out.println(this.brightnessThreshold / 100);
-                    if (countAvrBrightness(image) <= brightnessLvl) {
-                        folder = "dark";
-                    } else {
-                        folder = "bright";
+                    String metaData = "";
+                    double imageBrightness = countAvrBrightness(image);
+                    NumberFormat nf = DecimalFormat.getInstance();
+                    nf.setMaximumFractionDigits(0);
+                    String resoult = nf.format(imageBrightness * 100);
+
+                    if ( imageBrightness <= brightnessLvl) {
+                        metaData = "_dark_" + resoult;
+                    }else {
+                        metaData = "_white_" + resoult;
                     }
-                    ImageIO.write(image, "" + getFileExtension(file), new File(outputsrc + "\\" + folder + "\\" + file.getName()));
+                    String nameWithoutExtenstion = file.getName();
+                    int pos = nameWithoutExtenstion.lastIndexOf(".");
+                    if (pos > 0) {
+                        nameWithoutExtenstion = nameWithoutExtenstion.substring(0, pos);
+                    }
+                    ImageIO.write(image, getFileExtension(file), new File(outputsrc + "\\" + nameWithoutExtenstion + metaData  +"." +getFileExtension(file)));
+
                     file.delete();
 
 
