@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class Main {
@@ -7,10 +8,9 @@ public class Main {
     public static void main(String[] args) {
 
         // remember to change path in config file
-        String path = new File("resources/config.properties").getAbsolutePath();
         Properties configuration = new Properties();
         try {
-            configuration.load(new FileInputStream(path));
+            configuration.load(FolderConstructor.class.getResourceAsStream("config.properties"));
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

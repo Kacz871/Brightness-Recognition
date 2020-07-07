@@ -38,7 +38,6 @@ public class ImageAnalyze {
                     image = ImageIO.read(file);
                     String folder = "";
                     double brightnessLvl = this.brightnessThreshold / 100;
-                    System.out.println(this.brightnessThreshold / 100);
                     String metaData = "";
                     double imageBrightness = countAvrBrightness(image);
                     NumberFormat nf = DecimalFormat.getInstance();
@@ -66,7 +65,7 @@ public class ImageAnalyze {
             }
         }
 
-        System.out.println("done");
+        System.out.println("DONE");
             }
 
     // Count brightness of every pixel on image then counting average
@@ -95,7 +94,6 @@ public class ImageAnalyze {
         }
         // img width multiplate by img height give us total amount of pixels
         float brightness = sumOfLuminance/(image.getWidth()*image.getHeight());
-        System.out.println( brightness);
         return  brightness;
 
     }
