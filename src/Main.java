@@ -17,7 +17,8 @@ public class Main {
         String input = configuration.getProperty("input");
         String output = configuration.getProperty("output");
         FolderConstructor test1 = new FolderConstructor(input, output);
-        ImageAnalyze test2 = new ImageAnalyze(25);
+        int brightnesLvl = Integer.parseInt(configuration.getProperty("brightnesLvl"));
+        ImageAnalyze test2 = new ImageAnalyze(brightnesLvl);
         test2.startAnalyze(test1.getImageList(), test1.getOutput());
 
     }
